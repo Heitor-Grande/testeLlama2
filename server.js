@@ -2,11 +2,12 @@ const express = require("express")
 const axios = require("axios")
 const server = express()
 
-
+//colocando o servidor pra rodar
 server.listen(8080, function () {
     console.log("rodando server teste")
 })
 
+//simulando banco de dados
 const jsonData = {
     perfilCliente: {
         nome: 'Heitor Grande',
@@ -53,9 +54,13 @@ const jsonData = {
     ]
 }
 
+//convertendo o JSON para STRING
 const jsonDataString = JSON.stringify(jsonData)
 
+//simulando a pergunta do usuario
 const perguntaDoUsuario = "Olá, gostaria de saber o que foi pedido no pedido #002 e o total. Por gentileza."
+
+//consultando o modelo de IA
 axios.post("http://localhost:11434/api/generate", {
     model: "llama2",
     prompt: `Você é um atentende de um comércio. Com base nos dados do cliente, responda a perguta do usuario: ${perguntaDoUsuario}? ${jsonDataString}`,
